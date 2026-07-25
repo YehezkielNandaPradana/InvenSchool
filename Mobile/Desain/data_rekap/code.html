@@ -1,0 +1,458 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Data Rekap - InvenSchool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-fixed": "#25005a",
+                    "surface-variant": "#e1e3e4",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-container": "#edeeef",
+                    "tertiary": "#6a1edb",
+                    "surface-bright": "#f8f9fa",
+                    "on-primary-fixed": "#00174b",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#eaddff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary-container": "#f7edff",
+                    "on-secondary-container": "#57657a",
+                    "inverse-surface": "#2e3132",
+                    "outline": "#737686",
+                    "background": "#f8f9fa",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#8343f4",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-dim": "#d9dadb",
+                    "on-primary-container": "#eeefff",
+                    "surface-tint": "#0053db",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "outline-variant": "#c3c6d7",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9fa",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#d5e3fc",
+                    "primary-fixed": "#dbe1ff",
+                    "inverse-primary": "#b4c5ff",
+                    "primary-container": "#2563eb",
+                    "on-surface-variant": "#434655",
+                    "on-surface": "#191c1d",
+                    "primary": "#004ac6",
+                    "secondary": "#515f74",
+                    "secondary-fixed": "#d5e3fc",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "container-padding-desktop": "32px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .chart-container {
+        min-height: 240px;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 flex justify-between items-center w-full px-container-padding-mobile h-16 bg-surface dark:bg-on-background">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed">InvenSchool</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-container-padding-mobile max-w-7xl mx-auto space-y-6">
+<!-- Screen Header -->
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Data Rekap</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Laporan inventaris sekolah periode aktif.</p>
+</div>
+<!-- Top Dashboard Cards (Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-primary-container p-4 rounded-[20px] shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="inventory">inventory</span>
+<span class="text-xs font-bold text-on-primary-container/60">+12%</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-primary-container opacity-80">Total Inventaris</p>
+<p class="font-title-lg text-title-lg font-bold text-on-primary-container">1,284</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[20px] shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary" data-icon="file_download">file_download</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Barang Masuk</p>
+<p class="font-title-lg text-title-lg font-bold text-on-surface">42</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[20px] shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="file_upload">file_upload</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Barang Keluar</p>
+<p class="font-title-lg text-title-lg font-bold text-on-surface">18</p>
+</div>
+</div>
+<div class="bg-error-container p-4 rounded-[20px] shadow-sm flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-error-container" data-icon="report_problem">report_problem</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-error-container opacity-80">Barang Rusak</p>
+<p class="font-title-lg text-title-lg font-bold text-on-error-container">7</p>
+</div>
+</div>
+</div>
+<!-- Filter Section -->
+<section class="bg-surface-container-low p-4 rounded-xl space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="filter_list">filter_list</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Filter Laporan</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="relative">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1 ml-1">Rentang Tanggal</label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-full px-4 h-12">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="calendar_month">calendar_month</span>
+<input class="bg-transparent border-none text-body-md w-full focus:ring-0" readonly="" type="text" value="Jan 1, 2024 - Jan 31, 2024">
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1 ml-1">Kategori</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-outline-variant rounded-full px-4 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none">
+<option>Semua Kategori</option>
+<option>Elektronik</option>
+<option>Mebel</option>
+<option>Alat Olahraga</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1 ml-1">Lokasi</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-outline-variant rounded-full px-4 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none">
+<option>Semua Lokasi</option>
+<option>Laboratorium Komputer</option>
+<option>Ruang Guru</option>
+<option>Gudang Utama</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Chart Area -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Bar Chart: Monthly Inventory -->
+<div class="bg-surface-container-lowest p-6 rounded-[24px] shadow-sm border border-surface-variant">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-title-lg text-title-lg text-on-surface">Monthly Inventory</h4>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<div class="chart-container flex items-end justify-between gap-2 px-2">
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500 h-16 group-hover:h-20"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Sep</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500 h-32 group-hover:h-36"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Oct</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500 h-24 group-hover:h-28"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Nov</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500 h-40 group-hover:h-44"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Dec</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500 h-36 group-hover:h-40"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Jan</span>
+</div>
+</div>
+</div>
+<!-- Pie Chart: Kondisi Barang -->
+<div class="bg-surface-container-lowest p-6 rounded-[24px] shadow-sm border border-surface-variant">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-title-lg text-title-lg text-on-surface">Kondisi Barang</h4>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="pie_chart">pie_chart</span>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-around gap-8 py-4">
+<div class="relative w-40 h-40 rounded-full border-[16px] border-surface-container flex items-center justify-center">
+<!-- Simulated Pie Segments -->
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-primary" style="clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%);"></div>
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-amber-400" style="clip-path: polygon(50% 50%, 0% 50%, 0% 0%, 50% 0%);"></div>
+<div class="text-center">
+<p class="font-bold text-headline-lg-mobile text-on-surface leading-none">1.2K</p>
+<p class="text-[10px] text-on-surface-variant">Total</p>
+</div>
+</div>
+<div class="space-y-3 w-full md:w-auto">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-lg text-label-lg text-on-surface">Baik (85%)</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-amber-400"></div>
+<span class="font-label-lg text-label-lg text-on-surface">Rusak Ringan (12%)</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="font-label-lg text-label-lg text-on-surface">Rusak Berat (3%)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<section class="bg-surface-container-lowest rounded-[24px] shadow-sm border border-surface-variant overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-variant flex justify-between items-center">
+<h4 class="font-title-lg text-title-lg text-on-surface">Ringkasan Aset</h4>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="sort">sort</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Nama Barang</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Kategori</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Jumlah</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Kondisi</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Lokasi</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-body-md text-body-md font-medium">MacBook Air M2</td>
+<td class="px-6 py-4 font-body-md text-body-md">Elektronik</td>
+<td class="px-6 py-4 font-body-md text-body-md">20 Unit</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold">Baik</span>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Lab Komp 1</td>
+<td class="px-6 py-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">Tersedia</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-body-md text-body-md font-medium">Proyektor Epson EB-X</td>
+<td class="px-6 py-4 font-body-md text-body-md">Media</td>
+<td class="px-6 py-4 font-body-md text-body-md">12 Unit</td>
+<td class="px-6 py-4">
+<span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">Rusak Ringan</span>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Ruang Guru</td>
+<td class="px-6 py-4">
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold">Dipinjam</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-body-md text-body-md font-medium">Kursi Ergonomis S-12</td>
+<td class="px-6 py-4 font-body-md text-body-md">Mebel</td>
+<td class="px-6 py-4 font-body-md text-body-md">150 Unit</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold">Baik</span>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Kelas X-A</td>
+<td class="px-6 py-4">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">Tersedia</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-body-md text-body-md font-medium">Mikroskop Binokuler</td>
+<td class="px-6 py-4 font-body-md text-body-md">Sains</td>
+<td class="px-6 py-4 font-body-md text-body-md">8 Unit</td>
+<td class="px-6 py-4">
+<span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-bold">Rusak Berat</span>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Lab Biologi</td>
+<td class="px-6 py-4">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full text-xs font-bold">Perbaikan</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Summary Section -->
+<div class="bg-surface-container p-6 rounded-[24px] border border-surface-variant/50">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<h5 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Statistik Ringkas</h5>
+<div class="flex flex-wrap gap-x-6 gap-y-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-body-md text-body-md">Total Items: 1,284 Unit</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-body-md text-body-md">Kondisi Baik: 1,091 Unit</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-body-md text-body-md">Total Rusak: 193 Unit</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:items-end justify-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="update">update</span>
+                        Pembaruan Terakhir: 31 Jan 2024, 14:20 WIB
+                    </p>
+<p class="font-body-md text-body-md text-on-surface mt-1 italic opacity-70">"Data disinkronkan secara otomatis dari Cloud Database."</p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Buttons -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button class="flex items-center justify-center gap-2 h-14 bg-error text-on-error rounded-full font-label-lg text-label-lg hover:shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+                Export PDF
+            </button>
+<button class="flex items-center justify-center gap-2 h-14 bg-green-700 text-white rounded-full font-label-lg text-label-lg hover:shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="table_chart">table_chart</span>
+                Export Excel
+            </button>
+<button class="flex items-center justify-center gap-2 h-14 bg-surface-container-highest text-on-surface rounded-full font-label-lg text-label-lg border border-outline-variant hover:bg-surface-variant active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+                Print Report
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container dark:bg-surface-container-highest rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Barang</span>
+</a>
+
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">Riwayat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<!-- Micro-interaction for list rows -->
+<script>
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mousedown', () => {
+                row.classList.add('scale-[0.995]', 'bg-surface-container-high');
+            });
+            row.addEventListener('mouseup', () => {
+                row.classList.remove('scale-[0.995]', 'bg-surface-container-high');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('scale-[0.995]', 'bg-surface-container-high');
+            });
+        });
+    </script>
+
+
+</body></html>
