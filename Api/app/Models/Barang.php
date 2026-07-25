@@ -11,19 +11,22 @@ class Barang extends Model
     protected $table = 'tbl_barang';
 
     protected $fillable = [
-        'kode_barang',
         'kategori_dana_id',
         'kategori_barang_id',
         'lokasi_id',
-        'barang_asal_id',
         'nama_barang',
         'spesifikasi',
-        'stok_baik',
-        'stok_rusak',
         'kondisi_umum',
         'status_aktif',
         'created_by',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'stok_total' => 'integer',
+        ];
+    }
 
     public function kategoriDana(): BelongsTo
     {
@@ -68,5 +71,13 @@ class Barang extends Model
     public function auditStok(): HasMany
     {
         return $this->hasMany(AuditStok::class, 'barang_id');
+    }
+
+    public function scopeLokasiUser($query, User $user)
+    {
+        if ($user->role?->kode_role === 'KAPRODI' && $user->lokasi_id) {
+            return $query->where('lokasi_id', $user->lokasi_id);
+        }
+        return $query;
     }
 }
