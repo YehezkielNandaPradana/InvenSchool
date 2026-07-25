@@ -8,11 +8,19 @@ use App\Http\Requests\UpdateBarangRequest;
 use App\Http\Resources\AuditStokResource;
 use App\Http\Resources\BarangResource;
 use App\Models\Barang;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+#[Group('Barang')]
 class BarangController extends Controller
 {
+    /**
+     * Daftar barang inventaris.
+     *
+     * Mengembalikan daftar barang terpagina. Scope KAPRODI hanya melihat barang di lokasinya.
+     * Filter berdasarkan lokasi_id, kategori_dana_id, kategori_barang_id, dan status_aktif.
+     */
     public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', Barang::class);
@@ -28,6 +36,12 @@ class BarangController extends Controller
         return BarangResource::collection($barang)->response();
     }
 
+    /**
+     * Tambah barang baru.
+     *
+     * kode_barang dan stok_total digenerate otomatis oleh trigger database.
+     * stok_baik dan stok_rusak tidak dapat diisi dari request.
+     */
     public function store(StoreBarangRequest $request): JsonResponse
     {
         $this->authorize('create', Barang::class);
@@ -44,6 +58,11 @@ class BarangController extends Controller
         ], 201);
     }
 
+    /**
+     * Detail barang.
+     *
+     * Menampilkan informasi lengkap barang beserta relasi kategori, lokasi, dan pembuat.
+     */
     public function show(Barang $barang): JsonResponse
     {
         $this->authorize('view', $barang);
@@ -55,6 +74,11 @@ class BarangController extends Controller
         ]);
     }
 
+    /**
+     * Ubah data barang.
+     *
+     * stok_baik dan stok_rusak tidak dapat diubah melalui endpoint ini.
+     */
     public function update(UpdateBarangRequest $request, Barang $barang): JsonResponse
     {
         $this->authorize('update', $barang);
@@ -67,6 +91,11 @@ class BarangController extends Controller
         ]);
     }
 
+    /**
+     * Hapus barang (soft-delete).
+     *
+     * Mengubah status_aktif menjadi 'Dihapus'. Riwayat mutasi dan audit tetap tersimpan.
+     */
     public function destroy(Barang $barang): JsonResponse
     {
         $this->authorize('delete', $barang);
@@ -78,6 +107,12 @@ class BarangController extends Controller
         ]);
     }
 
+    /**
+     * Riwayat perubahan stok barang.
+     *
+     * Mengembalikan daftar audit stok terpagina untuk barang tertentu,
+     * dicatat oleh trigger database saat mutasi atau laporan kerusakan disetujui.
+     */
     public function riwayatStok(Barang $barang): JsonResponse
     {
         $this->authorize('view', $barang);

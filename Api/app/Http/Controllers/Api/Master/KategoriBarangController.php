@@ -7,10 +7,17 @@ use App\Http\Requests\Master\StoreKategoriBarangRequest;
 use App\Http\Requests\Master\UpdateKategoriBarangRequest;
 use App\Http\Resources\KategoriBarangResource;
 use App\Models\KategoriBarang;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 
+#[Group('Master — Kategori Barang')]
 class KategoriBarangController extends Controller
 {
+    /**
+     * Daftar kategori barang.
+     *
+     * Mengembalikan semua jenis kategori barang (Elektronik, Mebeulair, ATK, dll).
+     */
     public function index(): JsonResponse
     {
         $this->authorize('viewAny', KategoriBarang::class);
@@ -20,6 +27,9 @@ class KategoriBarangController extends Controller
         ]);
     }
 
+    /**
+     * Tambah kategori barang baru.
+     */
     public function store(StoreKategoriBarangRequest $request): JsonResponse
     {
         $this->authorize('create', KategoriBarang::class);
@@ -31,6 +41,9 @@ class KategoriBarangController extends Controller
         ], 201);
     }
 
+    /**
+     * Detail kategori barang.
+     */
     public function show(KategoriBarang $kategoriBarang): JsonResponse
     {
         $this->authorize('view', $kategoriBarang);
@@ -40,6 +53,9 @@ class KategoriBarangController extends Controller
         ]);
     }
 
+    /**
+     * Ubah kategori barang.
+     */
     public function update(UpdateKategoriBarangRequest $request, KategoriBarang $kategoriBarang): JsonResponse
     {
         $this->authorize('update', $kategoriBarang);
@@ -51,6 +67,9 @@ class KategoriBarangController extends Controller
         ]);
     }
 
+    /**
+     * Hapus kategori barang.
+     */
     public function destroy(KategoriBarang $kategoriBarang): JsonResponse
     {
         $this->authorize('delete', $kategoriBarang);

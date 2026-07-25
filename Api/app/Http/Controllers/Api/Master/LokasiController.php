@@ -7,10 +7,17 @@ use App\Http\Requests\Master\StoreLokasiRequest;
 use App\Http\Requests\Master\UpdateLokasiRequest;
 use App\Http\Resources\LokasiResource;
 use App\Models\Lokasi;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 
+#[Group('Master — Lokasi')]
 class LokasiController extends Controller
 {
+    /**
+     * Daftar semua lokasi.
+     *
+     * Mengembalikan semua data lokasi (Prodi, Unit Kerja, Gudang).
+     */
     public function index(): JsonResponse
     {
         $this->authorize('viewAny', Lokasi::class);
@@ -20,6 +27,9 @@ class LokasiController extends Controller
         ]);
     }
 
+    /**
+     * Tambah lokasi baru.
+     */
     public function store(StoreLokasiRequest $request): JsonResponse
     {
         $this->authorize('create', Lokasi::class);
@@ -31,6 +41,9 @@ class LokasiController extends Controller
         ], 201);
     }
 
+    /**
+     * Detail lokasi.
+     */
     public function show(Lokasi $lokasi): JsonResponse
     {
         $this->authorize('view', $lokasi);
@@ -40,6 +53,9 @@ class LokasiController extends Controller
         ]);
     }
 
+    /**
+     * Ubah data lokasi.
+     */
     public function update(UpdateLokasiRequest $request, Lokasi $lokasi): JsonResponse
     {
         $this->authorize('update', $lokasi);
@@ -51,6 +67,9 @@ class LokasiController extends Controller
         ]);
     }
 
+    /**
+     * Hapus lokasi.
+     */
     public function destroy(Lokasi $lokasi): JsonResponse
     {
         $this->authorize('delete', $lokasi);

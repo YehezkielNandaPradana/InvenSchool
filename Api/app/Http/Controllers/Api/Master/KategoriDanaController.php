@@ -7,10 +7,17 @@ use App\Http\Requests\Master\StoreKategoriDanaRequest;
 use App\Http\Requests\Master\UpdateKategoriDanaRequest;
 use App\Http\Resources\KategoriDanaResource;
 use App\Models\KategoriDana;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 
+#[Group('Master — Kategori Dana')]
 class KategoriDanaController extends Controller
 {
+    /**
+     * Daftar kategori dana.
+     *
+     * Mengembalikan semua sumber dana (BOS, KMT, dll).
+     */
     public function index(): JsonResponse
     {
         $this->authorize('viewAny', KategoriDana::class);
@@ -20,6 +27,9 @@ class KategoriDanaController extends Controller
         ]);
     }
 
+    /**
+     * Tambah kategori dana baru.
+     */
     public function store(StoreKategoriDanaRequest $request): JsonResponse
     {
         $this->authorize('create', KategoriDana::class);
@@ -31,6 +41,9 @@ class KategoriDanaController extends Controller
         ], 201);
     }
 
+    /**
+     * Detail kategori dana.
+     */
     public function show(KategoriDana $kategoriDana): JsonResponse
     {
         $this->authorize('view', $kategoriDana);
@@ -40,6 +53,9 @@ class KategoriDanaController extends Controller
         ]);
     }
 
+    /**
+     * Ubah kategori dana.
+     */
     public function update(UpdateKategoriDanaRequest $request, KategoriDana $kategoriDana): JsonResponse
     {
         $this->authorize('update', $kategoriDana);
@@ -51,6 +67,9 @@ class KategoriDanaController extends Controller
         ]);
     }
 
+    /**
+     * Hapus kategori dana.
+     */
     public function destroy(KategoriDana $kategoriDana): JsonResponse
     {
         $this->authorize('delete', $kategoriDana);

@@ -13,16 +13,23 @@ use App\Http\Resources\MutasiDetailResource;
 use App\Models\MutasiBarang;
 use App\Models\MutasiDetail;
 use App\Services\MutasiBarangService;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 
+#[Group('Mutasi Barang')]
 class MutasiBarangController extends Controller
 {
     public function __construct(
         protected MutasiBarangService $mutasiBarangService
     ) {}
 
+    /**
+     * Daftar mutasi barang.
+     *
+     * Mengembalikan daftar mutasi terpagina. Filter berdasarkan status dan pengaju_id.
+     */
     public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', MutasiBarang::class);
@@ -36,6 +43,12 @@ class MutasiBarangController extends Controller
         return MutasiBarangResource::collection($mutasi)->response();
     }
 
+    /**
+     * Buat draft mutasi.
+     *
+     * Membuat header mutasi baru dengan status Draft.
+     * no_mutasi digenerate otomatis dengan format MUT-{tahun}-{nomor urut}.
+     */
     public function store(StoreMutasiBarangRequest $request): JsonResponse
     {
         $this->authorize('create', MutasiBarang::class);
@@ -56,6 +69,11 @@ class MutasiBarangController extends Controller
         ], 201);
     }
 
+    /**
+     * Detail mutasi.
+     *
+     * Menampilkan informasi lengkap mutasi termasuk detail barang dan riwayat approval.
+     */
     public function show(MutasiBarang $mutasi): JsonResponse
     {
         $this->authorize('view', $mutasi);
@@ -67,6 +85,11 @@ class MutasiBarangController extends Controller
         ]);
     }
 
+    /**
+     * Tambah item barang ke draft mutasi.
+     *
+     * Menambahkan barang dan jumlah ke dalam mutasi yang masih berstatus Draft.
+     */
     public function addDetail(AddMutasiDetailRequest $request, MutasiBarang $mutasi): JsonResponse
     {
         $this->authorize('addDetail', $mutasi);
@@ -80,6 +103,9 @@ class MutasiBarangController extends Controller
         ], 201);
     }
 
+    /**
+     * Hapus item dari draft mutasi.
+     */
     public function removeDetail(MutasiBarang $mutasi, MutasiDetail $detail): JsonResponse
     {
         $this->authorize('removeDetail', $mutasi);
@@ -95,6 +121,15 @@ class MutasiBarangController extends Controller
         ]);
     }
 
+    /**
+     * Ajukan mutasi ke Sarpras.
+     *
+     * Mengubah status dari Draft menjadi Pending dan membuat entri approval Sarpras.
+     * Minimal satu item barang harus ditambahkan sebelum pengajuan.
+     *
+     * @response 422 {"message": "Minimal satu item barang harus ditambahkan."}
+     * @throws \InvalidArgumentException
+     */
     public function ajukan(AjukanMutasiBarangRequest $request, MutasiBarang $mutasi): JsonResponse
     {
         $this->authorize('ajukan', $mutasi);
@@ -113,6 +148,16 @@ class MutasiBarangController extends Controller
         ]);
     }
 
+    /**
+     * Sarpras verifikasi mutasi.
+     *
+     * Sarpras menyetujui atau menolak mutasi yang sudah diajukan.
+     * Jika butuh_approval_kepsek=true, status tetap Pending menunggu approval Kepsek.
+     * Jika disetujui dan tidak perlu Kepsek, trigger database akan memindahkan stok.
+     *
+     * @response 422 {"message": "Hanya mutasi dengan status Pending yang bisa diverifikasi."}
+     * @throws \InvalidArgumentException
+     */
     public function verifikasiSarpras(VerifikasiSarprasRequest $request, MutasiBarang $mutasi): JsonResponse
     {
         $this->authorize('verifikasiSarpras', $mutasi);
@@ -136,6 +181,16 @@ class MutasiBarangController extends Controller
         ]);
     }
 
+    /**
+     * Kepsek approval final mutasi.
+     *
+     * Kepala Sekolah menyetujui atau menolak mutasi yang sudah diverifikasi Sarpras.
+     * Hanya untuk mutasi dengan butuh_approval_kepsek=true.
+     * Jika disetujui, trigger database memindahkan stok dan mencatat audit.
+     *
+     * @response 422 {"message": "Sarpras harus menyetujui terlebih dahulu."}
+     * @throws \InvalidArgumentException
+     */
     public function approvalKepsek(ApprovalKepsekRequest $request, MutasiBarang $mutasi): JsonResponse
     {
         $this->authorize('approvalKepsek', $mutasi);

@@ -6,13 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\LogAktivitas;
+use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+#[Group('Autentikasi')]
 class AuthController extends Controller
 {
+    /**
+     * Login pengguna.
+     *
+     * Menerima username dan password, mengembalikan cookie session (Sanctum SPA)
+     * serta data user yang login.
+     *
+     * @unauthenticated
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         $request->validated();
@@ -47,6 +57,11 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Logout pengguna.
+     *
+     * Menghapus session dan menginvalidasi token, mencatat log aktivitas.
+     */
     public function logout(Request $request): JsonResponse
     {
         $user = $request->user();
@@ -69,6 +84,11 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Data pengguna saat ini.
+     *
+     * Mengembalikan data user yang sedang login beserta relasi role dan lokasi.
+     */
     public function me(Request $request): JsonResponse
     {
         $user = $request->user()->load('role', 'lokasi');
