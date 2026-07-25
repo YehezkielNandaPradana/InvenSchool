@@ -2,23 +2,27 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\KategoriBarang;
+use App\Models\KategoriDana;
+use App\Models\Lokasi;
+use App\Policies\MasterDataPolicy;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+    protected $policies = [
+        Lokasi::class => MasterDataPolicy::class,
+        KategoriDana::class => MasterDataPolicy::class,
+        KategoriBarang::class => MasterDataPolicy::class,
+    ];
+
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }
