@@ -108,6 +108,9 @@ class ApiClient {
       case DioExceptionType.badResponse:
         final statusCode = e.response?.statusCode;
         final message = e.response?.data?['message'];
+        if (message != null && message.isNotEmpty) {
+          return message;
+        }
         if (statusCode == 401) {
           return 'Sesi berakhir. Silakan login kembali.';
         }
@@ -117,7 +120,7 @@ class ApiClient {
         if (statusCode == 500) {
           return 'Terjadi kesalahan pada server.';
         }
-        return message ?? 'Terjadi kesalahan: $statusCode';
+        return 'Terjadi kesalahan: $statusCode';
       case DioExceptionType.cancel:
         return 'Permintaan dibatalkan.';
       default:
