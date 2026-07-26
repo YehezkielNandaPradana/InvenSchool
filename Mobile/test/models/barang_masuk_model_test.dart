@@ -6,27 +6,35 @@ void main() {
     test('should create from JSON', () {
       final json = {
         'id': 1,
-        'barang_id': 1,
+        'nama_barang': 'Meja Siswa',
+        'kategori': 'Furnitur',
         'jumlah': 10,
+        'satuan': 'unit',
+        'kondisi': 'baik',
+        'catatan': 'Barang baru',
         'tanggal_masuk': '2024-01-15',
-        'keterangan': 'Barang baru',
       };
       final model = BarangMasukModel.fromJson(json);
       expect(model.id, 1);
-      expect(model.barangId, 1);
+      expect(model.namaBarang, 'Meja Siswa');
       expect(model.jumlah, 10);
+      expect(model.satuan, 'unit');
     });
 
     test('should convert to JSON', () {
       final model = BarangMasukModel(
         id: 1,
-        barangId: 1,
+        namaBarang: 'Meja Siswa',
+        kategori: 'Furnitur',
         jumlah: 10,
-        tanggalMasuk: '2024-01-15',
-        keterangan: 'Barang baru',
+        satuan: 'unit',
+        kondisi: 'baik',
+        catatan: 'Barang baru',
+        tanggalMasuk: DateTime(2024, 1, 15),
       );
       final json = model.toJson();
       expect(json['id'], 1);
+      expect(json['nama_barang'], 'Meja Siswa');
       expect(json['jumlah'], 10);
     });
   });
