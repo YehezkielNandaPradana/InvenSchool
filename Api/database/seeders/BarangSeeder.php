@@ -18,7 +18,7 @@ class BarangSeeder extends Seeder
         ];
 
         foreach ($barang as $item) {
-            DB::table('barang')->insert($item);
+            DB::table('tbl_barang')->insert($item);
         }
     }
 }

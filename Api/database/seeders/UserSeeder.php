@@ -10,13 +10,16 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('tbl_users')->insert([
+            'username' => 'admin',
             'name' => 'Admin',
             'email' => 'admin@invenschool.com',
             'password' => Hash::make('password'),
-            'role' => 'admin',
+            'role_id' => 1,
+            'status_aktif' => 'Aktif',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
     }
+}
 }
