@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:inventaris_app/app/constants/app_api_config.dart';
 import 'package:inventaris_app/core/network/storage_service.dart';
@@ -33,8 +34,11 @@ class ApiClient {
 
   Future<dynamic> get(String path, {Map<String, dynamic>? queryParameters}) async {
     try {
+      await _checkConnectivity();
       final response = await dio.get(path, queryParameters: queryParameters);
       return response.data;
+    } on ServerException {
+      rethrow;
     } on DioException catch (e) {
       final message = _handleError(e);
       throw ServerException(message);
@@ -45,8 +49,11 @@ class ApiClient {
 
   Future<dynamic> post(String path, {dynamic body}) async {
     try {
+      await _checkConnectivity();
       final response = await dio.post(path, data: body);
       return response.data;
+    } on ServerException {
+      rethrow;
     } on DioException catch (e) {
       final message = _handleError(e);
       throw ServerException(message);
@@ -57,8 +64,11 @@ class ApiClient {
 
   Future<dynamic> put(String path, {dynamic body}) async {
     try {
+      await _checkConnectivity();
       final response = await dio.put(path, data: body);
       return response.data;
+    } on ServerException {
+      rethrow;
     } on DioException catch (e) {
       final message = _handleError(e);
       throw ServerException(message);
@@ -69,13 +79,23 @@ class ApiClient {
 
   Future<dynamic> delete(String path) async {
     try {
+      await _checkConnectivity();
       final response = await dio.delete(path);
       return response.data;
+    } on ServerException {
+      rethrow;
     } on DioException catch (e) {
       final message = _handleError(e);
       throw ServerException(message);
     } catch (e) {
       throw ServerException('Terjadi kesalahan: ${e.toString()}');
+    }
+  }
+
+  Future<void> _checkConnectivity() async {
+    final result = await Connectivity().checkConnectivity();
+    if (result.any((r) => r == ConnectivityResult.none)) {
+      throw ServerException('Tidak ada koneksi internet.');
     }
   }
 
