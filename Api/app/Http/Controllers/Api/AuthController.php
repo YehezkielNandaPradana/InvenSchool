@@ -17,7 +17,10 @@ class AuthController extends Controller
     {
         $request->validated();
 
-        $user = \App\Models\User::where('username', $request->username)->first();
+        $field = $request->has('email') ? 'email' : 'username';
+        $value = $request->input($field);
+
+        $user = \App\Models\User::where($field, $value)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -31,9 +34,7 @@ class AuthController extends Controller
             ], 403);
         }
 
-        Auth::login($user);
-
-        $request->session()->regenerate();
+        $token = $user->createToken('auth-token')->plainTextToken;
 
         LogAktivitas::create([
             'user_id' => $user->id,
@@ -43,7 +44,13 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Login berhasil.',
-            'data' => new UserResource($user->load('role', 'lokasi')),
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role?->nama_role ?? $user->getRoleNames()->first(),
+            ],
         ]);
     }
 
@@ -51,18 +58,13 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        Auth::guard('web')->logout();
+        $user->currentAccessToken()->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        if ($user) {
-            LogAktivitas::create([
-                'user_id' => $user->id,
-                'aktivitas' => 'Logout',
-                'alamat_ip' => $request->ip(),
-            ]);
-        }
+        LogAktivitas::create([
+            'user_id' => $user->id,
+            'aktivitas' => 'Logout',
+            'alamat_ip' => $request->ip(),
+        ]);
 
         return response()->json([
             'message' => 'Logout berhasil.',
@@ -74,7 +76,12 @@ class AuthController extends Controller
         $user = $request->user()->load('role', 'lokasi');
 
         return response()->json([
-            'data' => new UserResource($user),
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role?->nama_role ?? $user->getRoleNames()->first(),
+            ],
         ]);
     }
 }
