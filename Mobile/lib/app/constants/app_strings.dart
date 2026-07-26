@@ -15,7 +15,7 @@ class AppStrings {
   static const String welcomeBack = 'Selamat Datang Kembali';
   static const String loginSubtitle = 'Silakan masuk ke akun inventaris Anda';
   static const String emailOrUsername = 'Email atau Username';
-  static const String emailHint = 'nama@sekolah.sch.id';
+  static const String emailHint = 'email atau username';
   static const String kataSandi = 'Kata Sandi';
   static const String lupaPassword = 'Lupa Password?';
   static const String masuk = 'Masuk';
