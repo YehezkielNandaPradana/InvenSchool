@@ -1,7 +1,7 @@
 class ApiEndpoints {
-  static String login = '/auth/login';
-  static String logout = '/auth/logout';
-  static String me = '/auth/me';
+  static String login = '/login';
+  static String logout = '/logout';
+  static String me = '/me';
 
   static String barangMasuk = '/barang-masuk';
   static String barangMasukDetail(int id) => '/barang-masuk/$id';
