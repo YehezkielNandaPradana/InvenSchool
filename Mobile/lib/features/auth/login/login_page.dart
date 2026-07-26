@@ -167,10 +167,7 @@ class _LoginPageState extends State<LoginPage> {
               prefixIcon: const Icon(Icons.person_outline),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Email tidak boleh kosong';
-                }
-                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                  return 'Format email tidak valid';
+                  return 'Email/Username tidak boleh kosong';
                 }
                 return null;
               },
