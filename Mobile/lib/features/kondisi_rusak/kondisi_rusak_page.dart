@@ -50,9 +50,9 @@ class _KondisiRusakBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         SizedBox(height: 8),
         _Header(),
         SizedBox(height: 24),
@@ -74,7 +74,7 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -85,7 +85,7 @@ class _Header extends StatelessWidget {
             color: AppColors.primary,
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4),
         Text(
           'Pantau dan kelola laporan kerusakan aset sekolah',
           style: TextStyle(
@@ -149,7 +149,7 @@ class _TotalRusakCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned(
+          const Positioned(
             right: -16,
             top: -16,
             child: Opacity(
@@ -188,11 +188,11 @@ class _TotalRusakCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
+              const Row(
                 children: [
-                  const Icon(Icons.trending_up, size: 14, color: AppColors.error),
-                  const SizedBox(width: 4),
-                  const Text(
+                  Icon(Icons.trending_up, size: 14, color: AppColors.error),
+                  SizedBox(width: 4),
+                  Text(
                     '+5 bln ini',
                     style: TextStyle(
                       fontSize: 12,
@@ -254,10 +254,10 @@ class _PerluPerbaikanCard extends StatelessWidget {
               ),
             ],
           ),
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 '18',
                 style: TextStyle(
                   fontSize: 28,
@@ -265,7 +265,7 @@ class _PerluPerbaikanCard extends StatelessWidget {
                   color: AppColors.onSurface,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 'Perlu Perbaikan',
                 style: TextStyle(
@@ -307,10 +307,10 @@ class _TidakBisaCard extends StatelessWidget {
             ),
             child: const Icon(Icons.dangerous, color: AppColors.error, size: 24),
           ),
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 '24',
                 style: TextStyle(
                   fontSize: 28,
@@ -318,7 +318,7 @@ class _TidakBisaCard extends StatelessWidget {
                   color: AppColors.onSurface,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 'Tidak Bisa Digunakan',
                 style: TextStyle(
@@ -327,7 +327,7 @@ class _TidakBisaCard extends StatelessWidget {
                   color: AppColors.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 2),
+              SizedBox(height: 2),
               Text(
                 'Penghapusan Aset',
                 style: TextStyle(
@@ -353,7 +353,7 @@ class _SearchBar extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Cari laporan kerusakan...',
         hintStyle: TextStyle(color: AppColors.onSurfaceVariant.withValues(alpha: 0.6)),
-        prefixIcon: Icon(Icons.search, color: AppColors.onSurfaceVariant),
+        prefixIcon: const Icon(Icons.search, color: AppColors.onSurfaceVariant),
         filled: true,
         fillColor: _surfaceContainerLow,
         border: OutlineInputBorder(
@@ -371,10 +371,10 @@ class _FilterChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: const [
+        children: [
           _Chip(label: 'Semua', selected: true),
           SizedBox(width: 8),
           _Chip(label: 'Ringan'),
@@ -563,7 +563,7 @@ class _DamageCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     inventoryCode,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 11,
                       color: AppColors.onSurfaceVariant,
                     ),
@@ -571,12 +571,12 @@ class _DamageCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      Icon(Icons.location_on_outlined, size: 14, color: AppColors.outline),
+                      const Icon(Icons.location_on_outlined, size: 14, color: AppColors.outline),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           location,
-                          style: TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
+                          style: const TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -586,11 +586,11 @@ class _DamageCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Icon(Icons.calendar_today_outlined, size: 14, color: AppColors.outline),
+                      const Icon(Icons.calendar_today_outlined, size: 14, color: AppColors.outline),
                       const SizedBox(width: 4),
                       Text(
                         daysAgo,
-                        style: TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
+                        style: const TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
                       ),
                     ],
                   ),
@@ -604,7 +604,7 @@ class _DamageCard extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           '\u201c',
                           style: TextStyle(
                             fontSize: 12,
@@ -617,7 +617,7 @@ class _DamageCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             description,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 11,
                               color: AppColors.onSurfaceVariant,
                               fontStyle: FontStyle.italic,
@@ -658,7 +658,7 @@ class _DamageCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Icon(Icons.more_vert, size: 18, color: AppColors.onSurfaceVariant),
+                      const Icon(Icons.more_vert, size: 18, color: AppColors.onSurfaceVariant),
                     ],
                   ),
                 ],
