@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/repositories/dashboard_repository.dart';
 class DashboardViewModel extends ChangeNotifier {
   final DashboardRepository dashboardRepository;
 
-  const DashboardViewModel({required this.dashboardRepository});
+  DashboardViewModel({required this.dashboardRepository});
 
   bool _isLoading = false;
   String? _errorMessage;

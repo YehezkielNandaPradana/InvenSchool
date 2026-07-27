@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/repositories/data_rekap_repository.dart';
 class DataRekapViewModel extends ChangeNotifier {
   final DataRekapRepository repository;
 
-  const DataRekapViewModel({required this.repository});
+  DataRekapViewModel({required this.repository});
 
   bool _isLoading = false;
   String? _errorMessage;

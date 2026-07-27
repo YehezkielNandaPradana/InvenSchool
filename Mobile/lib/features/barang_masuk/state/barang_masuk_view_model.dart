@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/repositories/barang_masuk_repository.dart';
 class BarangMasukViewModel extends ChangeNotifier {
   final BarangMasukRepository repository;
 
-  const BarangMasukViewModel({required this.repository});
+  BarangMasukViewModel({required this.repository});
 
   bool _isLoading = false;
   String? _errorMessage;
