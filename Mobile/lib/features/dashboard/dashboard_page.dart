@@ -27,11 +27,11 @@ class DashboardPage extends StatelessWidget {
         color: AppColors.primaryContainer,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.add, color: AppColors.onPrimaryContainer, size: 20),
-          const SizedBox(width: 8),
+          Icon(Icons.add, color: AppColors.onPrimaryContainer, size: 20),
+          SizedBox(width: 8),
           Text(
             'Barang Baru',
             style: TextStyle(
@@ -60,7 +60,7 @@ class _DashboardBody extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.error_outline, size: 48, color: AppColors.error),
+                const Icon(Icons.error_outline, size: 48, color: AppColors.error),
                 const SizedBox(height: 12),
                 Text(vm.errorMessage!, style: const TextStyle(color: AppColors.error)),
                 const SizedBox(height: 12),
@@ -95,7 +95,7 @@ class _DashboardBody extends StatelessWidget {
 class _WelcomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -106,7 +106,7 @@ class _WelcomeSection extends StatelessWidget {
             color: AppColors.primary,
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4),
         Text(
           'Berikut adalah ringkasan inventaris sekolah hari ini.',
           style: TextStyle(
@@ -178,7 +178,7 @@ class _TotalAsetCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Positioned(
+          const Positioned(
             right: -16,
             top: -16,
             child: Opacity(
@@ -216,7 +216,7 @@ class _TotalAsetCard extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
@@ -224,7 +224,7 @@ class _TotalAsetCard extends StatelessWidget {
                       size: 14,
                       color: AppColors.onPrimaryContainer,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Text(
                       '+12 minggu ini',
                       style: TextStyle(
@@ -283,7 +283,7 @@ class _RuanganCard extends StatelessWidget {
                 ),
                 child: const Icon(Icons.meeting_room, color: AppColors.primary, size: 24),
               ),
-              Icon(Icons.more_vert, color: AppColors.onSurfaceVariant, size: 20),
+              const Icon(Icons.more_vert, color: AppColors.onSurfaceVariant, size: 20),
             ],
           ),
           Column(
@@ -298,7 +298,7 @@ class _RuanganCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
+              const Text(
                 'Ruangan & Lab',
                 style: TextStyle(
                   fontSize: 12,
@@ -373,7 +373,7 @@ class _LaporanCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
+              const Text(
                 'Laporan Aktif',
                 style: TextStyle(
                   fontSize: 12,
@@ -401,12 +401,12 @@ class _BottomGrid extends StatelessWidget {
   }
 
   Widget _wideLayout() {
-    return Row(
+    return const Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Expanded(flex: 2, child: _RecentActivity()),
-        const SizedBox(width: 32),
-        const Expanded(flex: 1, child: _QuickActionsSection()),
+        Expanded(flex: 2, child: _RecentActivity()),
+        SizedBox(width: 32),
+        Expanded(flex: 1, child: _QuickActionsSection()),
       ],
     );
   }
@@ -436,7 +436,7 @@ class _RecentActivity extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Aktivitas Terbaru',
               style: TextStyle(
                 fontSize: 18,
@@ -483,7 +483,7 @@ class _RecentActivity extends StatelessWidget {
                 time: '10 Menit yang lalu \u2022 Oleh Budi Admin',
               ),
               _Divider(),
-              _ActivityItem(
+              const _ActivityItem(
                 icon: Icons.build,
                 iconBgColor: AppColors.errorContainer,
                 iconColor: AppColors.error,
@@ -596,13 +596,13 @@ class _ActivityItem extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     time,
-                    style: TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
+                    style: const TextStyle(fontSize: 11, color: AppColors.onSurfaceVariant),
                   ),
                 ],
               ),
             ),
             const SizedBox(width: 8),
-            Icon(Icons.chevron_right, color: AppColors.outline, size: 20),
+            const Icon(Icons.chevron_right, color: AppColors.outline, size: 20),
           ],
         ),
       ),
@@ -631,7 +631,7 @@ class _QuickActionsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Aksi Cepat',
           style: TextStyle(
             fontSize: 18,
@@ -645,18 +645,18 @@ class _QuickActionsSection extends StatelessWidget {
             final isNarrow = constraints.maxWidth < 300;
             return Row(
               children: [
-                Expanded(child: _QuickActionButton(
+                const Expanded(child: _QuickActionButton(
                   icon: Icons.search,
                   label: 'Cari Barang',
                 )),
                 const SizedBox(width: 12),
-                Expanded(child: _QuickActionButton(
+                const Expanded(child: _QuickActionButton(
                   icon: Icons.post_add_outlined,
                   label: 'Buat Laporan',
                 )),
                 if (!isNarrow) ...[
                   const SizedBox(width: 12),
-                  Expanded(child: _QuickActionButton(
+                  const Expanded(child: _QuickActionButton(
                     icon: Icons.inventory_outlined,
                     label: 'Cek Stok',
                   )),
@@ -681,7 +681,7 @@ class _QuickActionsSection extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.5),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.lightbulb_outline,
                   color: _onSecondaryContainer,
                   size: 28,
@@ -692,7 +692,7 @@ class _QuickActionsSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Tips Inventaris',
                       style: TextStyle(
                         fontSize: 12,
@@ -749,7 +749,7 @@ class _QuickActionButton extends StatelessWidget {
               Text(
                 label,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                   color: AppColors.onSurface,
