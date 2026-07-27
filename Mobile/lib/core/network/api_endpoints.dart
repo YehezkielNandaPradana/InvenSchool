@@ -1,18 +1,18 @@
 class ApiEndpoints {
-  static String login = '/login';
-  static String logout = '/logout';
-  static String me = '/me';
+  static const String login = '/login';
+  static const String logout = '/logout';
+  static const String me = '/me';
 
-  static String barangMasuk = '/barang-masuk';
+  static const String barangMasuk = '/barang-masuk';
   static String barangMasukDetail(int id) => '/barang-masuk/$id';
 
-  static String dashboard = '/dashboard';
+  static const String dashboard = '/dashboard';
 
-  static String dataRekap = '/data-rekap';
+  static const String dataRekap = '/data-rekap';
 
-  static String kondisiRusak = '/kondisi-rusak';
+  static const String kondisiRusak = '/kondisi-rusak';
   static String kondisiRusakDetail(int id) => '/kondisi-rusak/$id';
 
-  static String profil = '/profil';
-  static String profilUpdate = '/profil';
+  static const String profil = '/profil';
+  static const String profilUpdate = '/profil';
 }
