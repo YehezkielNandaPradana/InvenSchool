@@ -2,7 +2,7 @@ class LoginRequest {
   final String email;
   final String password;
 
-  LoginRequest({required this.email, required this.password});
+  const LoginRequest({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
     return {'email': email, 'password': password};
@@ -13,7 +13,7 @@ class LoginResponse {
   final String token;
   final UserModel user;
 
-  LoginResponse({required this.token, required this.user});
+  const LoginResponse({required this.token, required this.user});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
@@ -29,7 +29,7 @@ class UserModel {
   final String email;
   final String? role;
 
-  UserModel({
+  const UserModel({
     required this.id,
     required this.name,
     required this.email,
