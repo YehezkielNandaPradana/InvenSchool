@@ -11,8 +11,8 @@ class ApiClient {
     : _storageService = storageService {
     dio.options = BaseOptions(
       baseUrl: ApiConfig.baseUrl,
-      connectTimeout: Duration(milliseconds: ApiConfig.connectTimeout),
-      receiveTimeout: Duration(milliseconds: ApiConfig.receiveTimeout),
+      connectTimeout: const Duration(milliseconds: ApiConfig.connectTimeout),
+      receiveTimeout: const Duration(milliseconds: ApiConfig.receiveTimeout),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -95,7 +95,7 @@ class ApiClient {
   Future<void> _checkConnectivity() async {
     final result = await Connectivity().checkConnectivity();
     if (result.any((r) => r == ConnectivityResult.none)) {
-      throw ServerException('Tidak ada koneksi internet.');
+      throw const ServerException('Tidak ada koneksi internet.');
     }
   }
 
