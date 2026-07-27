@@ -31,4 +31,16 @@ class KondisiRusakModel {
       status: json['status'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'nama_barang': namaBarang,
+      'kategori': kategori,
+      'kondisi': kondisi,
+      'deskripsi_kerusakan': deskripsiKerusakan,
+      'tanggal_lapor': tanggalLapor?.toIso8601String(),
+      'status': status,
+    };
+  }
 }
