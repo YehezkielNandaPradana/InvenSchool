@@ -106,9 +106,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
+        const Text(
           AppStrings.appName,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w600,
             color: Color(0xFF004ac6),
@@ -141,18 +141,18 @@ class _LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: Column(
           children: [
-            Text(
+            const Text(
               AppStrings.welcomeBack,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
                 color: Color(0xFF191c1d),
               ),
             ),
             const SizedBox(height: 4),
-            Text(
+            const Text(
               AppStrings.loginSubtitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 color: Color(0xFF434655),
               ),
@@ -185,9 +185,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     AppStrings.lupaPassword,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0xFF004ac6),
@@ -260,17 +260,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildFooter() {
-    return Text.rich(
+    return const Text.rich(
       TextSpan(
-        text: '${AppStrings.belumPunyaAkun} ',
-        style: const TextStyle(
+        text: 'Belum punya akun? ',
+        style: TextStyle(
           fontSize: 14,
           color: Color(0xFF434655),
         ),
         children: [
           TextSpan(
-            text: AppStrings.hubungiAdmin,
-            style: const TextStyle(
+            text: 'Hubungi Admin',
+            style: TextStyle(
               color: Color(0xFF004ac6),
               fontWeight: FontWeight.bold,
             ),
