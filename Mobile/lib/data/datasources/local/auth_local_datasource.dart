@@ -1,7 +1,7 @@
 import 'package:inventaris_app/data/datasources/base_local_datasource.dart';
 
 class AuthLocalDataSource extends BaseLocalDataSource {
-  AuthLocalDataSource({required super.storageService});
+  const AuthLocalDataSource({required super.storageService});
 
   Future<void> cacheToken(String token) async {
     await storageService.saveToken(token);

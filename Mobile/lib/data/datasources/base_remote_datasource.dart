@@ -5,7 +5,7 @@ abstract class BaseRemoteDataSource {
   final ApiClient apiClient;
   final StorageService storageService;
 
-  BaseRemoteDataSource({
+  const BaseRemoteDataSource({
     required this.apiClient,
     required this.storageService,
   });
