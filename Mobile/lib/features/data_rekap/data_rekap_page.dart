@@ -82,7 +82,7 @@ class _StatCards extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isWide = constraints.maxWidth >= 600;
-        final cards = const [
+        const cards = [
           _StatCard(
             bgColor: AppColors.primaryContainer,
             icon: Icons.inventory,
@@ -376,10 +376,10 @@ class _BarChart extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.3)),
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Monthly Inventory',
             style: TextStyle(
               fontSize: 16,
@@ -387,20 +387,20 @@ class _BarChart extends StatelessWidget {
               color: AppColors.onSurface,
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           SizedBox(
             height: 180,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 _BarColumn(label: 'Sep', height: 0.6, value: 850),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 _BarColumn(label: 'Okt', height: 0.75, value: 1020),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 _BarColumn(label: 'Nov', height: 0.9, value: 1200),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 _BarColumn(label: 'Des', height: 1.0, value: 1284),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 _BarColumn(label: 'Jan', height: 0.85, value: 1150),
               ],
             ),
@@ -672,13 +672,13 @@ class _DataTableSection extends StatelessWidget {
               horizontalMargin: 16,
               columnSpacing: 24,
               headingRowColor: WidgetStateProperty.all(_surfaceContainerLow),
-              columns: [
-                const DataColumn(label: Text('Nama Barang', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
-                const DataColumn(label: Text('Kategori', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
-                const DataColumn(label: Text('Jumlah', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
-                const DataColumn(label: Text('Kondisi', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
-                const DataColumn(label: Text('Lokasi', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
-                const DataColumn(label: Text('Status', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+              columns: const [
+                DataColumn(label: Text('Nama Barang', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+                DataColumn(label: Text('Kategori', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+                DataColumn(label: Text('Jumlah', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+                DataColumn(label: Text('Kondisi', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+                DataColumn(label: Text('Lokasi', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
+                DataColumn(label: Text('Status', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12))),
               ],
               rows: [
                 _tableRow('MacBook Air', 'Elektronik', '12', 'Baik', 'Lab Komputer', 'Tersedia', const Color(0xFF22C55E)),
