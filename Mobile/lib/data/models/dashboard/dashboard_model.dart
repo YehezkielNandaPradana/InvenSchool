@@ -23,6 +23,16 @@ class DashboardModel {
       chartData: list.map((e) => ChartData.fromJson(e)).toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'total_barang': totalBarang,
+      'total_masuk': totalMasuk,
+      'total_rusak': totalRusak,
+      'total_kategori': totalKategori,
+      'chart_data': chartData.map((e) => e.toJson()).toList(),
+    };
+  }
 }
 
 class ChartData {
@@ -33,5 +43,12 @@ class ChartData {
 
   factory ChartData.fromJson(Map<String, dynamic> json) {
     return ChartData(label: json['label'] ?? '', value: json['value'] ?? 0);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'label': label,
+      'value': value,
+    };
   }
 }
