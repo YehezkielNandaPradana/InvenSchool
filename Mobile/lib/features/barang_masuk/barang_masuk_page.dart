@@ -99,7 +99,7 @@ class _BodyState extends State<_Body> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.error_outline, size: 48, color: AppColors.error),
+                const Icon(Icons.error_outline, size: 48, color: AppColors.error),
                 const SizedBox(height: 12),
                 Text(vm.errorMessage!, style: const TextStyle(color: AppColors.error)),
                 const SizedBox(height: 12),
@@ -316,7 +316,7 @@ class _BodyState extends State<_Body> {
         labelText: label,
         labelStyle: const TextStyle(color: AppColors.onSurfaceVariant, fontSize: 14),
         hintText: 'Pilih tanggal',
-        suffixIcon: Icon(Icons.calendar_today, size: 18, color: AppColors.onSurfaceVariant),
+        suffixIcon: const Icon(Icons.calendar_today, size: 18, color: AppColors.onSurfaceVariant),
         filled: true,
         fillColor: AppColors.surface,
         border: OutlineInputBorder(
