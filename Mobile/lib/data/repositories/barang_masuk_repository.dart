@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/models/barang_masuk/barang_masuk_model.dart'
 class BarangMasukRepository {
   final BarangMasukRemoteDataSource remoteDataSource;
 
-  BarangMasukRepository({required this.remoteDataSource});
+  const BarangMasukRepository({required this.remoteDataSource});
 
   Future<List<BarangMasukModel>> getBarangMasuk() async {
     try {

@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/models/data_rekap/data_rekap_model.dart';
 class DataRekapRepository {
   final DataRekapRemoteDataSource remoteDataSource;
 
-  DataRekapRepository({required this.remoteDataSource});
+  const DataRekapRepository({required this.remoteDataSource});
 
   Future<List<DataRekapModel>> getDataRekap() async {
     try {

@@ -8,7 +8,7 @@ class AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
   final AuthLocalDataSource localDataSource;
 
-  AuthRepository({
+  const AuthRepository({
     required this.remoteDataSource,
     required this.localDataSource,
   });

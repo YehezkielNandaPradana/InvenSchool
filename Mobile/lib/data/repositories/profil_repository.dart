@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/models/profil/profil_model.dart';
 class ProfilRepository {
   final ProfilRemoteDataSource remoteDataSource;
 
-  ProfilRepository({required this.remoteDataSource});
+  const ProfilRepository({required this.remoteDataSource});
 
   Future<ProfilModel> getProfil() async {
     try {

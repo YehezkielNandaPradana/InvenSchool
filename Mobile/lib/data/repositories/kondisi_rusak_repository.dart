@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/models/kondisi_rusak/kondisi_rusak_model.dar
 class KondisiRusakRepository {
   final KondisiRusakRemoteDataSource remoteDataSource;
 
-  KondisiRusakRepository({required this.remoteDataSource});
+  const KondisiRusakRepository({required this.remoteDataSource});
 
   Future<List<KondisiRusakModel>> getKondisiRusak() async {
     try {

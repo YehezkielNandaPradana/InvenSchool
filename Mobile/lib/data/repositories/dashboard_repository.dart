@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/models/dashboard/dashboard_model.dart';
 class DashboardRepository {
   final DashboardRemoteDataSource remoteDataSource;
 
-  DashboardRepository({required this.remoteDataSource});
+  const DashboardRepository({required this.remoteDataSource});
 
   Future<DashboardModel> getDashboard() async {
     try {
