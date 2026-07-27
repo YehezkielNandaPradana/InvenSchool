@@ -6,7 +6,7 @@ class ProfilModel {
   final String? alamat;
   final String? foto;
 
-  ProfilModel({
+  const ProfilModel({
     required this.id,
     required this.name,
     required this.email,

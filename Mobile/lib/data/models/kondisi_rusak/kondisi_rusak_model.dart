@@ -7,7 +7,7 @@ class KondisiRusakModel {
   final DateTime? tanggalLapor;
   final String? status;
 
-  KondisiRusakModel({
+  const KondisiRusakModel({
     required this.id,
     required this.namaBarang,
     required this.kategori,

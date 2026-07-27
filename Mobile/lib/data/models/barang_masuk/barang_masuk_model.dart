@@ -9,7 +9,7 @@ class BarangMasukModel {
   final DateTime? tanggalMasuk;
   final String? gambar;
 
-  BarangMasukModel({
+  const BarangMasukModel({
     required this.id,
     required this.namaBarang,
     required this.kategori,

@@ -6,7 +6,7 @@ class DataRekapModel {
   final String lokasi;
   final DateTime? updatedAt;
 
-  DataRekapModel({
+  const DataRekapModel({
     required this.id,
     required this.namaBarang,
     required this.kategori,
