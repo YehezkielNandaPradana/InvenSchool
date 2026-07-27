@@ -28,4 +28,15 @@ class DataRekapModel {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'nama_barang': namaBarang,
+      'kategori': kategori,
+      'jumlah': jumlah,
+      'lokasi': lokasi,
+      'updated_at': updatedAt?.toIso8601String(),
+    };
+  }
 }
