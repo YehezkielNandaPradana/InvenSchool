@@ -4,7 +4,7 @@ import 'package:inventaris_app/data/models/auth/login_model.dart';
 void main() {
   group('LoginRequest', () {
     test('should convert to JSON', () {
-      final model = LoginRequest(email: 'admin@invenschool.com', password: 'password');
+      final model = const LoginRequest(email: 'admin@invenschool.com', password: 'password');
       final json = model.toJson();
       expect(json['email'], 'admin@invenschool.com');
       expect(json['password'], 'password');
@@ -33,7 +33,7 @@ void main() {
     });
 
     test('should convert to JSON', () {
-      final model = UserModel(id: 1, name: 'Admin', email: 'admin@invenschool.com', role: 'admin');
+      final model = const UserModel(id: 1, name: 'Admin', email: 'admin@invenschool.com', role: 'admin');
       final json = model.toJson();
       expect(json['name'], 'Admin');
     });
