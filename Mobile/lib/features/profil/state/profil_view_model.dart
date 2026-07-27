@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/repositories/profil_repository.dart';
 class ProfilViewModel extends ChangeNotifier {
   final ProfilRepository repository;
 
-  ProfilViewModel({required this.repository});
+  const ProfilViewModel({required this.repository});
 
   bool _isLoading = false;
   String? _errorMessage;

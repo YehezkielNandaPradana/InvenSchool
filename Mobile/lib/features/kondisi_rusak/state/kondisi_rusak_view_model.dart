@@ -6,7 +6,7 @@ import 'package:inventaris_app/data/repositories/kondisi_rusak_repository.dart';
 class KondisiRusakViewModel extends ChangeNotifier {
   final KondisiRusakRepository repository;
 
-  KondisiRusakViewModel({required this.repository});
+  const KondisiRusakViewModel({required this.repository});
 
   bool _isLoading = false;
   String? _errorMessage;
