@@ -1,4 +1,3 @@
-const String appName = 'Inventaris Sekolah';
 const String appVersion = '1.0.0';
 
 class AppStrings {
